@@ -2,27 +2,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-}
-
-.header-logo img {
-    width: 150px; /* Ajuste selon tes besoins */
-}
-
-.header-nav .header-signin {
-    text-decoration: none;
-    font-size: 16px;
-    color: #333;
+    padding: 5px 20px;
+    background-color: #fff; 
+  }
+  
+  .header-logo img {
+    max-width: 100%;
+    width: 180px;
+  }
+  
+  .header-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-signin {
     font-weight: bold;
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s;
-}
-
-.header-nav .header-signin:hover {
-    background-color: #ddd;
-}
+    color: #2c3e50;
+    text-decoration: none;
+    margin-right: 0.5rem;
+  }
+  
+  .header-signin:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,16 +1,22 @@
+
+
 import React from "react";
-import logo from "../assets/images/logo.png"; 
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
+import "./header.css"; 
 
 const Header = () => {
     return (
         <header className="header">
             <div className="header-logo">
-                <a href="/">
-                    <img src={logo} alt="argent bank logo" />
-                </a>
+                <Link to="/">
+                    <img src={logo} alt="Argent Bank Logo" />
+                </Link>
             </div>
             <nav className="header-nav">
-                <a href="/login" className="header-signin">Sign In</a>
+                <Link to="/login" className="header-signin">
+                    Sign In
+                </Link>
             </nav>
         </header>
     );

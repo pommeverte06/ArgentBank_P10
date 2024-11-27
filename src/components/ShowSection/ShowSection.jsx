@@ -1,9 +1,12 @@
 import React from "react";
 import Section from "../Section/Section";
+import { iconChat, iconMoney, iconSecurity } from "../../assets/icons";
+import "./showsection.css";
 
-import iconChat from "../assets/img/icon-chat.png";
-import iconMoney from "../assets/img/icon-money.png";
-import iconSecurity from "../assets/img/icon-security.png";
+
+// import iconChat from "../assets/img/icon-chat.png";
+// import iconMoney from "../assets/img/icon-money.png";
+// import iconSecurity from "../assets/img/icon-security.png";
 
 const ShowSection = () => {
     return (

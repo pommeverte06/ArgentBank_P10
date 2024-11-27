@@ -1,9 +1,12 @@
+
+
 import React from "react";
+import "./footer.css"; 
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <p>Copyright 2020 Argent Bank</p>
+            <p className="footer-text">Copyright 2020 Argent Bank</p>
         </footer>
     );
 };

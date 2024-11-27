@@ -1,0 +1,36 @@
+.show-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+}
+
+@media (min-width: 920px) {
+    .show-section {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+/* le style pour chaque section */
+.section {
+    flex: 1;
+}
+
+.section-icon {
+    width: auto;
+    height: 120px;
+    border: 8px solid #00bc77;
+    border-radius: 50%;
+    padding: 0.9rem;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.section-description {
+    font-size: 13.5px;
+    color: #444;
+}
