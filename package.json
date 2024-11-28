@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:frontend": "cd ./ && npm run dev", 
+    "start:backend": "cd ArgentBank-Backend-main/server && npm start", 
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"" 
+    
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
@@ -23,6 +27,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "concurrently": "^9.1.0",
     "eslint": "^9.13.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
@@ -30,4 +35,5 @@
     "globals": "^15.11.0",
     "vite": "^5.4.10"
   }
+  
 }
