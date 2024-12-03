@@ -26,4 +26,8 @@
   .header-signin:hover {
     text-decoration: underline;
   }
-  
+  .header-nav {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+}
