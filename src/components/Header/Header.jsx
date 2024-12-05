@@ -1,10 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/userSlice";
 import logo from "../../assets/logo.png";
-import Avatar from "../Avatar/Avatar"; 
+import Avatar from "../Avatar/Avatar";
 import "./header.css";
 
 const Header = () => {
+  const user = useSelector((state) => state.user.userData);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    dispatch(logout());
+    navigate("/"); // ne retourne pas à la page d'accueil après déconnexion
+  };
+
   return (
     <header className="header">
       <div className="header-logo">
@@ -13,10 +27,19 @@ const Header = () => {
         </Link>
       </div>
       <nav className="header-nav">
-        <Avatar />
-        <Link to="/login" className="header-signin">
-          Sign In
-        </Link>
+        {isLoggedIn && user ? (
+          <div className="header-user">
+            <Avatar />
+            <span className="header-user-name">{user.firstName}</span>
+            <button className="header-signout" onClick={handleLogout}>
+              <i className="fa fa-right-from-bracket" aria-hidden="true"></i> Sign Out
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="header-signin">
+            <i className="fa fa-user-circle"></i> Sign In
+          </Link>
+        )}
       </nav>
     </header>
   );

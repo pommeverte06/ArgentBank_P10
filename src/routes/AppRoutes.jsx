@@ -1,49 +1,35 @@
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Profile from "../pages/Profile";
+import { useSelector } from "react-redux";
 
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import Profile from '../pages/Profile';
-import ProtectedRoute from './ProtectedRoute'; // Import du composant pour protéger les routes
-
-const PageUnderConstruction = () => (
-    <div>Page en construction. Revenez bientôt !</div>
-);
+// route protégée
+const ProtectedRoute = ({ children }) => {
+  const token = useSelector((state) => state.user.token);
+  console.log("Token in ProtectedRoute:", token);
+  return token ? children : <Navigate to="/login" />;
+};
 
 const AppRoutes = () => {
-    return (
-        <Routes>
-            {/* Routes publiques */}
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+  return (
+    <Routes>
+      {/* routes publique */}
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
 
-            {/* Routes protégées */}
-            <Route
-                path="/profile"
-                element={
-                    <ProtectedRoute>
-                        <Profile />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/transactions"
-                element={
-                    <ProtectedRoute>
-                        <PageUnderConstruction />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/settings"
-                element={
-                    <ProtectedRoute>
-                        <PageUnderConstruction />
-                    </ProtectedRoute>
-                }
-            />
-        </Routes>
-    );
+      {/* routes protégées */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
 };
 
 export default AppRoutes;

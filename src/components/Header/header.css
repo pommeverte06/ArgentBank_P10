@@ -1,33 +1,55 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-    background-color: #fff; 
-  }
-  
-  .header-logo img {
-    max-width: 100%;
-    width: 180px;
-  }
-  
-  .header-nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-signin {
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-    margin-right: 0.5rem;
-  }
-  
-  .header-signin:hover {
-    text-decoration: underline;
-  }
-  .header-nav {
-    display: flex;
-    align-items: center; 
-    gap: 10px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 22px;
+  background-color: #fff;
+}
+
+.header-logo img {
+  height: auto;
+  width: 200px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-user-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header-signout {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-signin {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+
+}
+.header-signin:hover{
+  text-decoration: underline;
+}
+
+.header.active {
+  background-color: #f8f9fa;
 }

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../redux/userSlice";
-import { login as apiLogin } from "../services/api";
+import { login as apiLogin, getUserProfile } from "../services/api";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import "./styles/login.css";
@@ -9,15 +10,33 @@ import "./styles/login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await apiLogin({ email, password });
-      dispatch(login(data));
+      const userProfile = await getUserProfile(data.token);
+
+      console.log("API Response in Login:", {
+        token: data.token,
+        userData: userProfile,
+      });
+
+      dispatch(login({ token: data.token, userData: userProfile }));
+
+      if (rememberMe) {
+        localStorage.setItem("token", data.token);
+      } else {
+        sessionStorage.setItem("token", data.token);
+      }
+
+      navigate("/profile");
     } catch (err) {
+      console.error(err);
       setError("Invalid username or password");
     }
   };
@@ -37,7 +56,7 @@ const Login = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                required
               />
             </div>
             <div className="input-wrapper">
@@ -47,11 +66,16 @@ const Login = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
+                required
               />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
               <label htmlFor="remember-me">Remember me</label>
             </div>
             <button type="submit" className="sign-in-button">

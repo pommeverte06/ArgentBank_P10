@@ -1,11 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getUserProfile } from "../services/api";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import "./styles/profile.css";
 
 const Profile = () => {
-    return (
-        <div>
-            <h1>bla bla bla</h1>
+  const token = useSelector((state) => state.user.token); // Récupère le token depuis Redux
+  const [userProfile, setUserProfile] = useState(null);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    const fetchUserProfile = async () => {
+      try {
+        const profileData = await getUserProfile(token);
+        setUserProfile(profileData);
+      } catch (err) {
+        console.error("Failed to fetch user profile:", err);
+        setError("Unable to load profile. Please try again later.");
+      }
+    };
+
+    fetchUserProfile();
+  }, [token, navigate]);
+
+  if (!userProfile && !error) {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <>
+      <Header />
+      <main className="main bg-dark">
+        <div className="profile">
+          {error ? (
+            <p className="profile-error">{error}</p>
+          ) : (
+            <>
+              <h1>Welcome back, {userProfile.firstName}!</h1>
+              <div className="profile-details">
+                <p>Email: {userProfile.email}</p>
+                <p>Username: {userProfile.userName}</p>
+              </div>
+            </>
+          )}
         </div>
-    );
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default Profile;
