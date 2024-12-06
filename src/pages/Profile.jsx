@@ -7,7 +7,7 @@ import Footer from "../components/Footer/Footer";
 import "./styles/profile.css";
 
 const Profile = () => {
-  const token = useSelector((state) => state.user.token); // Récupère le token depuis Redux
+  const token = useSelector((state) => state.user.token);
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ const Profile = () => {
         const profileData = await getUserProfile(token);
         setUserProfile(profileData);
       } catch (err) {
-        console.error("Failed to fetch user profile:", err);
-        setError("Unable to load profile. Please try again later.");
+        console.error("Failled fetch the profile of user:", err);
+        setError("Unable to load profile. Please try again.");
       }
     };
 
@@ -44,7 +44,7 @@ const Profile = () => {
             <p className="profile-error">{error}</p>
           ) : (
             <>
-              <h1>Welcome back, {userProfile.firstName}!</h1>
+              <h1>Welcome back, {userProfile.firstName} {userProfile.lastName}!</h1>
               <div className="profile-details">
                 <p>Email: {userProfile.email}</p>
                 <p>Username: {userProfile.userName}</p>

@@ -13,10 +13,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
     dispatch(logout());
-    navigate("/"); // ne retourne pas à la page d'accueil après déconnexion
+    navigate("/"); 
   };
 
   return (
