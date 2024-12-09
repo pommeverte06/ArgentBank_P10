@@ -1,16 +1,21 @@
+
+
+
+
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
+import Settings from "../pages/Settings"; 
 import { useSelector } from "react-redux";
 
-// pour les routes protégées
+// routes protégées
 const ProtectedRoute = ({ children }) => {
   const token = useSelector((state) => state.user.token);
 
   if (!token) {
-    console.log("Utilisateur non connecté, redirection vers /home");
+    console.log("Utilisateur non connecté, redirection vers /");
     return <Navigate to="/" replace />;
   }
 
@@ -20,9 +25,11 @@ const ProtectedRoute = ({ children }) => {
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* Route publique */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
 
+      {/* Route protégée pour le profil */}
       <Route
         path="/profile"
         element={
@@ -31,6 +38,19 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+
+      {/* Route protégée pour les paramètres */}
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Redirection pour les routes non définies */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

@@ -9,10 +9,10 @@ import { store } from "./redux/store";
 import { login } from "./redux/userSlice";
 import "./index.css";
 
-// Récupère le token au démarrage de l'application
+// récupère le token au démarrage de l'application
 const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 if (token) {
-  store.dispatch(login({ token })); // Initialise l'état Redux avec le token
+  store.dispatch(login({ token })); // initialise redux avec le token
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -25,7 +25,14 @@
 .header-user-name {
   font-size: 16px;
   font-weight: bold;
+  text-decoration: none;
+  color: #333;
 }
+.header-user-name:hover{
+  text-decoration: underline;
+} 
+
+
 
 .header-signout {
   background: none;
@@ -38,6 +45,11 @@
   align-items: center;
   gap: 5px;
 }
+/* .header-signout:hover{
+  text-decoration: underline;
+}  */
+
+
 
 .header-signin {
   text-decoration: none;
