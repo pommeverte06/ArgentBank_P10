@@ -1,3 +1,6 @@
+
+
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -48,8 +51,22 @@ const userSlice = createSlice({
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("userData");
     },
+    updateUser: (state, action) => {
+      console.log("Update user action payload:", action.payload);
+      state.userData = {
+        ...state.userData,
+        ...action.payload, // met à jour uniquement les champs fournis dans `action.payload`
+      };
+
+      // mise à jour des données dans le localStorage ou le sessionStorage
+      if (localStorage.getItem("token")) {
+        localStorage.setItem("userData", JSON.stringify(state.userData));
+      } else if (sessionStorage.getItem("token")) {
+        sessionStorage.setItem("userData", JSON.stringify(state.userData));
+      }
+    },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, updateUser } = userSlice.actions;
 export default userSlice.reducer;

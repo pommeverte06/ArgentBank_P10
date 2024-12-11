@@ -14,7 +14,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/"); // Redirige vers la page d'accueil après déconnexion
+    navigate("/"); // redirige vers la page d'accueil après déconnexion
   };
 
   return (
@@ -29,7 +29,7 @@ const Header = () => {
           <div className="header-user">
             <Avatar />
             <Link to="/profile" className="header-user-name">
-              {user.firstName}
+              {user.userName}
             </Link>
             <button className="header-signout" onClick={handleLogout}>
               <i className="fa fa-right-from-bracket" aria-hidden="true"></i>{" "}

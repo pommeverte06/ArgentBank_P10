@@ -33,3 +33,17 @@ export const getUserProfile = async (token) => {
     throw new Error("Failed to fetch user profile.");
   }
 };
+
+export const updateUserProfile = async (token, updatedData) => {
+  try {
+    const response = await axios.put(`${API_URL}/user/profile`, updatedData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.body;
+  } catch (error) {
+    console.error("API Update User Profile Error:", error.response?.data || error.message);
+    throw new Error("Failed to update profile.");
+  }
+};
