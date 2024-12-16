@@ -7,14 +7,17 @@ import Avatar from "../Avatar/Avatar";
 import "./header.css";
 
 const Header = () => {
-  const user = useSelector((state) => state.user.userData);
+  
+  const user = useSelector((state) => {return state.user.userData});
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    console.log("Logout button clicked"); 
     dispatch(logout());
-    navigate("/"); // redirige vers la page d'accueil après déconnexion
+    console.log("User logged out, navigating to home"); 
+    navigate("/");
   };
 
   return (

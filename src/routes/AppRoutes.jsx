@@ -1,13 +1,9 @@
-
-
-
-
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
-import Settings from "../pages/Settings"; 
+import Settings from "../pages/Settings";
 import { useSelector } from "react-redux";
 
 // routes protégées
@@ -25,11 +21,11 @@ const ProtectedRoute = ({ children }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Route publique */}
+      {/* routes publiques */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
 
-      {/* Route protégée pour le profil */}
+      {/* route protégée pour le profil */}
       <Route
         path="/profile"
         element={
@@ -39,7 +35,7 @@ const AppRoutes = () => {
         }
       />
 
-      {/* Route protégée pour les paramètres */}
+      {/* route protégée pour les paramètres */}
       <Route
         path="/settings"
         element={
@@ -49,7 +45,7 @@ const AppRoutes = () => {
         }
       />
 
-      {/* Redirection pour les routes non définies */}
+      {/* routes non définies */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

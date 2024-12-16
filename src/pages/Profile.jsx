@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserProfile } from "../services/api";
-import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Account from "../components/Accounts/Account";
 import EditUserName from "../components/EditUserName/EditUserName";
@@ -44,7 +43,6 @@ const Profile = () => {
 
   return (
     <>
-      <Header />
       <main>
         {!editing ? (
           <div className="welcome">

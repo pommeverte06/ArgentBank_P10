@@ -34,14 +34,14 @@ const Login = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
           <h1>Sign In</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <label htmlFor="email">Username</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"

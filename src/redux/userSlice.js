@@ -1,6 +1,3 @@
-
-
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -42,6 +39,7 @@ const userSlice = createSlice({
       }
     },
     logout: (state) => {
+      console.log("Logout action dispatched");
       state.isLoggedIn = false;
       state.token = null;
       state.userData = null;
@@ -50,23 +48,35 @@ const userSlice = createSlice({
       localStorage.removeItem("userData");
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("userData");
+      console.log("State after logout:", state);
     },
     updateUser: (state, action) => {
       console.log("Update user action payload:", action.payload);
       state.userData = {
         ...state.userData,
-        ...action.payload, // met à jour uniquement les champs fournis dans `action.payload`
+        ...action.payload,
       };
 
-      // mise à jour des données dans le localStorage ou le sessionStorage
       if (localStorage.getItem("token")) {
         localStorage.setItem("userData", JSON.stringify(state.userData));
       } else if (sessionStorage.getItem("token")) {
         sessionStorage.setItem("userData", JSON.stringify(state.userData));
       }
     },
+    reloadUser: (state) => {
+      const token =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+      const userData =
+        localStorage.getItem("userData") || sessionStorage.getItem("userData");
+
+      if (token && userData) {
+        state.isLoggedIn = true;
+        state.token = token;
+        state.userData = JSON.parse(userData);
+      }
+    },
   },
 });
 
-export const { login, logout, updateUser } = userSlice.actions;
+export const { login, logout, updateUser, reloadUser } = userSlice.actions;
 export default userSlice.reducer;
