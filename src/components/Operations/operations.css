@@ -1,0 +1,111 @@
+
+.operation-container {
+    width: 82.5%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+
+  .transaction-table thead{
+
+    background-color: white;
+    color: black;
+    border: none;
+  }
+  
+  .transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #00bc77; 
+    color: white;
+    text-align: left;
+    border-radius: 5px;
+
+  }
+  
+  .transaction-table th,
+  .transaction-table td {
+    padding: 12px 15px;
+  }
+  
+  .transaction-table th {
+    font-weight: bold;
+  }
+  
+  
+  
+  .toggle-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .toggle-button:focus {
+    outline: none;
+  }
+  
+  .transaction-details {
+    background-color: #d5f5e3;
+    color: #333;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  .transaction-details {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.edit-field input {
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.edit-field input:focus {
+  outline: none;
+  border-color: #00bc77;
+}
+.transaction-details {
+    background-color:white;
+    padding: 10px;
+  }
+  
+  .edit-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .edit-icon {
+    margin-left: 10px;
+    color: #00bc77;
+    cursor: pointer;
+  }
+  
+ 
+  select,
+  input {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  select:focus,
+  input:focus {
+    outline: none;
+    border-color: #00bc77;
+  }
+  
+  .toggle-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+  }
+  

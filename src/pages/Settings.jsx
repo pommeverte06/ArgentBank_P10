@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../components/Footer/Footer";
 import EditUserName from "../components/EditUserName/EditUserName";
 
 const Settings = () => {
@@ -8,7 +7,6 @@ const Settings = () => {
       <main className="main bg-dark">
         <EditUserName />
       </main>
-      <Footer />
     </>
   );
 };

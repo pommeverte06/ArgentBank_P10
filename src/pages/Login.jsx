@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/userSlice";
 import { login as apiLogin, getUserProfile } from "../services/api";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
 import "./styles/login.css";
 
 const Login = () => {
@@ -76,7 +74,6 @@ const Login = () => {
           </form>
         </section>
       </main>
-      <Footer />
     </>
   );
 };

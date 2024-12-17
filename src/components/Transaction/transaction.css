@@ -1,0 +1,44 @@
+.transaction-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    padding: 10px;
+    background-color: #00bc77;
+    color: white;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  
+  .transaction-row span {
+    padding: 5px;
+  }
+  
+  .transaction-header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .edit-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    color: white;
+  }
+  
+  .edit-icon:hover {
+    color: #0056b3;
+  }
+  
+  .transaction-row select,
+  .transaction-row input {
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
