@@ -1,0 +1,145 @@
+swagger: "2.0"
+info:
+  title: ArgentBank Transactions API
+  description: API pour gérer les transactions des utilisateurs
+  version: "1.0.0"
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
+
+paths:
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Récupérer les transactions groupées par compte
+      description: Retourne toutes les transactions pour le mois en cours, groupées par compte.
+      parameters:
+        - name: accountId
+          in: query
+          type: string
+          required: false
+          description: ID du compte (facultatif, retourne toutes les transactions si absent)
+      responses:
+        "200":
+          description: Liste des transactions groupées par compte
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/TransactionGroup"
+        "400":
+          description: Paramètres invalides
+        "500":
+          description: Erreur interne du serveur
+
+  /transactions/{transactionId}:
+    get:
+      tags:
+        - Transactions
+      summary: Voir les détails d'une transaction
+      description: Retourne les détails d'une transaction spécifique par son ID.
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+          description: ID unique de la transaction
+      responses:
+        "200":
+          description: Détails de la transaction
+          schema:
+            $ref: "#/definitions/TransactionDetail"
+        "404":
+          description: Transaction non trouvée
+        "500":
+          description: Erreur interne du serveur
+
+    patch:
+      tags:
+        - Transactions
+      summary: Modifier les informations d'une transaction
+      description: Met à jour la catégorie ou la note d'une transaction de façon partielle.
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+          description: ID unique de la transaction
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateTransaction"
+      responses:
+        "200":
+          description: Transaction mise à jour avec succès
+        "400":
+          description: Données invalides
+        "404":
+          description: Transaction non trouvée
+        "500":
+          description: Erreur interne du serveur
+
+definitions:
+  TransactionGroup:
+    type: object
+    properties:
+      accountId:
+        type: string
+        description: ID du compte
+      transactions:
+        type: array
+        items:
+          $ref: "#/definitions/TransactionSummary"
+
+  TransactionSummary:
+    type: object
+    properties:
+      transactionId:
+        type: string
+      date:
+        type: string
+        format: date
+      description:
+        type: string
+      amount:
+        type: string
+      balance:
+        type: string
+
+  TransactionDetail:
+    type: object
+    properties:
+      transactionId:
+        type: string
+      date:
+        type: string
+        format: date
+      description:
+        type: string
+      amount:
+        type: string
+      balance:
+        type: string
+      category:
+        type: string
+      note:
+        type: string
+
+  UpdateTransaction:
+    type: object
+    properties:
+      category:
+        type: string
+        description: Nouvelle catégorie pour la transaction
+      note:
+        type: string
+        description: Nouvelle note pour la transaction

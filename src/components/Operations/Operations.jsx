@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./operations.css";
 
-const Operation = ({ accountId }) => {
+const Operation = ( ) => {
   const [expandedRow, setExpandedRow] = useState(null);
   const [editingCategory, setEditingCategory] = useState(null);
   const [editingNote, setEditingNote] = useState(null);

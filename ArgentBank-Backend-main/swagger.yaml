@@ -108,11 +108,11 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
+# securityDefinitions:
+#   Bearer:
+#     type: apiKey
+#     name: Authorization
+#     in: header
 definitions:
   User:
     properties:
@@ -163,3 +163,4 @@ definitions:
     properties:
       userName:
         type: string
+
