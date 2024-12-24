@@ -7,15 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { getUserProfile } from "../services/api";
 import Account from "../components/Accounts/Account";
 import EditUserName from "../components/EditUserName/EditUserName";
-import Operation from "../components/Operations/Operations"; // Nouveau composant
+import Operation from "../components/Operations/Operations"; 
 import "./styles/profile.css";
 
 const Profile = () => {
   const token = useSelector((state) => state.user.token);
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
-  const [editing, setEditing] = useState(false); // Pour basculer entre affichage et édition
-  const [showOperations, setShowOperations] = useState(null); // Gère les opérations par compte
+  const [editing, setEditing] = useState(false); // bascule entre affichage et édition
+  const [showOperations, setShowOperations] = useState(null); // gère les opérations PAR COMPTES
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,7 +68,6 @@ const Profile = () => {
           <EditUserName userProfile={userProfile} onCancel={handleEditToggle} />
         )}
 
-        {/* Affichage des comptes et des opérations */}
         <div className="accounts">
           <Account
             title="Argent Bank Checking (x8349)"

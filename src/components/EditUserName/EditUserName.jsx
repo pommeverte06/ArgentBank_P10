@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserProfile } from "../../services/api";
 import { updateUser } from "../../redux/userSlice";
-import "./EditUserName.css";
+import "./editusername.css";
 
 const EditUserName = ({ userProfile, onCancel }) => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../services/api"; 
 import { updateUser } from "../../redux/userSlice"; 
-import "./WelcomeUser.css";
+import "./welcomeuser.css";
 
 const WelcomeUser = () => {
   const dispatch = useDispatch();
