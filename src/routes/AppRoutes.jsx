@@ -5,18 +5,9 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Settings from "../pages/Settings";
 import { useSelector } from "react-redux";
+import ProtectedRoute from "./ProtectedRoute";
 
-// routes protégées
-const ProtectedRoute = ({ children }) => {
-  const token = useSelector((state) => state.user.token);
 
-  if (!token) {
-    console.log("Utilisateur non connecté, redirection vers /");
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-};
 
 const AppRoutes = () => {
   return (
