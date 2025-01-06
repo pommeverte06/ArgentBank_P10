@@ -7,139 +7,145 @@ host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+
+security:
+  - Bearer: []
+
+paths:
+  /user/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Utilisateur
+      summary: Obtenir une liste des transactions
+      description: API pour récupérer toutes les transactions d'un utilisateur
+      parameters:
+        - in: header
+          name: Authorization
+          description: Joindre le token Bearer JWT
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Liste des transactions récupérée avec succès
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '404':
+          description: Liste des transactions introuvable
+        '500':
+          description: Erreur interne du serveur
+
+  /user/profile/transaction/{id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Utilisateur
+      summary: Obtenir une transaction par ID
+      description: API pour récupérer une transaction spécifique d'un utilisateur
+      parameters:
+        - in: header
+          name: Authorization
+          description: Joindre le token Bearer JWT 
+          required: true
+          type: string
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID de la transaction à récupérer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction récupérée avec succès
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: ID invalide fourni
+        '404':
+          description: Transaction introuvable
+        '500':
+          description: Erreur interne du serveur
+
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions Utilisateur
+      summary: Mettre à jour une transaction existante
+      description: API pour mettre à jour une transaction utilisateur
+      parameters:
+        - in: header
+          name: Authorization
+          description: Joindre le token Bearer JWT 
+          required: true
+          type: string
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID de la transaction à mettre à jour
+        - in: body
+          name: body
+          description: Données mises à jour pour la transaction utilisateur
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUpdate'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction mise à jour avec succès
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Champs invalides
+        '404':
+          description: Transaction introuvable
+        '500':
+          description: Erreur interne du serveur
+
 securityDefinitions:
   Bearer:
     type: apiKey
     name: Authorization
     in: header
-security:
-  - Bearer: []
-
-paths:
-  /transactions:
-    get:
-      tags:
-        - Transactions
-      summary: Récupérer les transactions groupées par compte
-      description: Retourne toutes les transactions pour le mois en cours, groupées par compte.
-      parameters:
-        - name: accountId
-          in: query
-          type: string
-          required: false
-          description: ID du compte (facultatif, retourne toutes les transactions si absent)
-      responses:
-        "200":
-          description: Liste des transactions groupées par compte
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/TransactionGroup"
-        "400":
-          description: Paramètres invalides
-        "500":
-          description: Erreur interne du serveur
-
-  /transactions/{transactionId}:
-    get:
-      tags:
-        - Transactions
-      summary: Voir les détails d'une transaction
-      description: Retourne les détails d'une transaction spécifique par son ID.
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          type: string
-          description: ID unique de la transaction
-      responses:
-        "200":
-          description: Détails de la transaction
-          schema:
-            $ref: "#/definitions/TransactionDetail"
-        "404":
-          description: Transaction non trouvée
-        "500":
-          description: Erreur interne du serveur
-
-    patch:
-      tags:
-        - Transactions
-      summary: Modifier les informations d'une transaction
-      description: Met à jour la catégorie ou la note d'une transaction de façon partielle.
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          type: string
-          description: ID unique de la transaction
-        - name: body
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/UpdateTransaction"
-      responses:
-        "200":
-          description: Transaction mise à jour avec succès
-        "400":
-          description: Données invalides
-        "404":
-          description: Transaction non trouvée
-        "500":
-          description: Erreur interne du serveur
 
 definitions:
-  TransactionGroup:
+  Transaction:
     type: object
     properties:
-      accountId:
+      id:
         type: string
-        description: ID du compte
-      transactions:
-        type: array
-        items:
-          $ref: "#/definitions/TransactionSummary"
+      transactionData:
+        type: object
+        properties:
+          date:
+            type: string
+          description:
+            type: string
+          amount:
+            type: number
+          details:
+            type: object
+            properties:
+              type:
+                type: string
+              category:
+                type: string
+              notes:
+                type: string
 
-  TransactionSummary:
-    type: object
-    properties:
-      transactionId:
-        type: string
-      date:
-        type: string
-        format: date
-      description:
-        type: string
-      amount:
-        type: string
-      balance:
-        type: string
-
-  TransactionDetail:
-    type: object
-    properties:
-      transactionId:
-        type: string
-      date:
-        type: string
-        format: date
-      description:
-        type: string
-      amount:
-        type: string
-      balance:
-        type: string
-      category:
-        type: string
-      note:
-        type: string
-
-  UpdateTransaction:
+  TransactionUpdate:
     type: object
     properties:
       category:
         type: string
-        description: Nouvelle catégorie pour la transaction
-      note:
+      notes:
         type: string
-        description: Nouvelle note pour la transaction

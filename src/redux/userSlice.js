@@ -1,19 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoggedIn:
-    !!localStorage.getItem("token") || !!sessionStorage.getItem("token"),
-  token: localStorage.getItem("token") || sessionStorage.getItem("token"),
-  userData:
-    localStorage.getItem("userData") &&
-    localStorage.getItem("userData") !== "undefined"
-      ? JSON.parse(localStorage.getItem("userData"))
-      : sessionStorage.getItem("userData") &&
-        sessionStorage.getItem("userData") !== "undefined"
-      ? JSON.parse(sessionStorage.getItem("userData"))
-      : null,
+  isLoggedIn: false,
+  token: null,
+  userData: null,
 };
 
+// vérif existance du token dans localstorage ou sessionstorage
+if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
+  initialState.isLoggedIn = true;
+  initialState.token =
+    localStorage.getItem("token") || sessionStorage.getItem("token");
+}
+
+// vérif si les données de l'utilisateur existent et sont valides dans le localstorage ou sessionstorage
+if (
+  localStorage.getItem("userData") &&
+  localStorage.getItem("userData") !== "undefined"
+) {
+  initialState.userData = JSON.parse(localStorage.getItem("userData"));
+} else if (
+  sessionStorage.getItem("userData") &&
+  sessionStorage.getItem("userData") !== "undefined"
+) {
+  initialState.userData = JSON.parse(sessionStorage.getItem("userData"));
+}
+
+//reducers
 const userSlice = createSlice({
   name: "user",
   initialState,
