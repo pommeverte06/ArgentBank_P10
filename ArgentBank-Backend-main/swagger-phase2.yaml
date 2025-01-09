@@ -23,7 +23,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: Joindre le token Bearer JWT
+          description: Attach Bearer JWT token
           required: true
           type: string
       produces:
@@ -51,7 +51,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: Joindre le token Bearer JWT 
+          description: Attach Bearer JWT token
           required: true
           type: string
         - in: path
@@ -83,7 +83,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: Joindre le token Bearer JWT 
+          description: Attach Bearer JWT token
           required: true
           type: string
         - in: path
