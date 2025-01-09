@@ -5,7 +5,7 @@ import { login } from "../redux/userSlice";
 import { login as apiLogin, getUserProfile } from "../services/api";
 import "./styles/login.css";
 
-const Login = () => {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -23,7 +23,7 @@ const Login = () => {
       dispatch(login({ token: data.token, userData: userProfile, rememberMe }));
 
       console.log("Utilisateur connecté, redirection vers /profile");
-      navigate("/profile"); 
+      navigate("/profile");
     } catch (err) {
       console.error("Erreur lors de la connexion :", err);
       setError("Invalid username or password");
@@ -75,6 +75,6 @@ const Login = () => {
       </main>
     </>
   );
-};
+}
 
 export default Login;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserProfile } from "../../services/api"; 
-import { updateUser } from "../../redux/userSlice"; 
+import { updateUserProfile } from "../../services/api";
+import { updateUser } from "../../redux/userSlice";
 import "./welcomeuser.css";
 
-const WelcomeUser = () => {
+function WelcomeUser() {
   const dispatch = useDispatch();
   const { userData, token } = useSelector((state) => state.user);
   const [isEditing, setIsEditing] = useState(false); // gére l'état d'édition
@@ -12,7 +12,9 @@ const WelcomeUser = () => {
 
   const handleSave = async () => {
     try {
-      const updatedData = await updateUserProfile(token, { userName: newUserName });
+      const updatedData = await updateUserProfile(token, {
+        userName: newUserName,
+      });
       dispatch(updateUser(updatedData)); // mise à jour du store Redux
       setIsEditing(false); //affichage normal
     } catch (error) {
@@ -67,6 +69,6 @@ const WelcomeUser = () => {
       )}
     </div>
   );
-};
+}
 
 export default WelcomeUser;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./banner.css";
 
-const Banner = () => {
+function Banner() {
   return (
     <div className="hero">
       <div className="hero-image"></div>

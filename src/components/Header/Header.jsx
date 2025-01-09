@@ -6,17 +6,18 @@ import logo from "../../assets/logo.png";
 import Avatar from "../Avatar/Avatar";
 import "./header.css";
 
-const Header = () => {
-  
-  const user = useSelector((state) => {return state.user.userData});
+function Header() {
+  const user = useSelector((state) => {
+    return state.user.userData;
+  });
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("Logout button clicked"); 
+    console.log("Logout button clicked");
     dispatch(logout());
-    console.log("User logged out, navigating to home"); 
+    console.log("User logged out, navigating to home");
     navigate("/");
   };
 
@@ -47,6 +48,6 @@ const Header = () => {
       </nav>
     </header>
   );
-};
+}
 
 export default Header;

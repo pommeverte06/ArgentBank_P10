@@ -4,7 +4,7 @@ import { updateUserProfile } from "../../services/api";
 import { updateUser } from "../../redux/userSlice";
 import "./editusername.css";
 
-const EditUserName = ({ userProfile, onCancel }) => {
+function EditUserName  ({ userProfile, onCancel })  {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
   const [userName, setUserName] = useState(userProfile?.userName || "");

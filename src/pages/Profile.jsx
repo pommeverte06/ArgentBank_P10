@@ -1,16 +1,13 @@
-
-
-
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserProfile } from "../services/api";
 import Account from "../components/Accounts/Account";
 import EditUserName from "../components/EditUserName/EditUserName";
-import Operation from "../components/Operations/Operations"; 
+import Operation from "../components/Operations/Operations";
 import "./styles/profile.css";
 
-const Profile = () => {
+function Profile() {
   const token = useSelector((state) => state.user.token);
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
@@ -99,6 +96,6 @@ const Profile = () => {
       </main>
     </>
   );
-};
+}
 
 export default Profile;

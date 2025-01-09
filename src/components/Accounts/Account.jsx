@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./account.css";
 
-const Account = ({ title, amount, description, onToggle, showOperations }) => {
+function Account({ title, amount, description, onToggle, showOperations }) {
   return (
     <section className="account">
       <div className="account-content-wrapper">

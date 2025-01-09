@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./operations.css";
 
-const Operation = ( ) => {
+function Operation() {
   const [expandedRow, setExpandedRow] = useState(null);
   const [editingCategory, setEditingCategory] = useState(null);
   const [editingNote, setEditingNote] = useState(null);
@@ -158,6 +158,6 @@ const Operation = ( ) => {
       </table>
     </div>
   );
-};
+}
 
 export default Operation;

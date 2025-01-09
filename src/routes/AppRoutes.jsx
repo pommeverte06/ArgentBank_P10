@@ -4,12 +4,9 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Settings from "../pages/Settings";
-import { useSelector } from "react-redux";
 import ProtectedRoute from "./ProtectedRoute";
 
-
-
-const AppRoutes = () => {
+function AppRoutes() {
   return (
     <Routes>
       {/* routes publiques */}
@@ -40,6 +37,6 @@ const AppRoutes = () => {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-};
+}
 
 export default AppRoutes;

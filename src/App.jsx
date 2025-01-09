@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import AppRoutes from "./routes/AppRoutes";
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
 
   // charge les données utilisateur si elles existent dans localStorage/sessionStorage
@@ -21,6 +21,6 @@ const App = () => {
       <Footer />
     </Router>
   );
-};
+}
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 import EditUserName from "../components/EditUserName/EditUserName";
 
-const Settings = () => {
+function Settings() {
   return (
     <>
       <main className="main bg-dark">
@@ -9,6 +9,6 @@ const Settings = () => {
       </main>
     </>
   );
-};
+}
 
 export default Settings;
