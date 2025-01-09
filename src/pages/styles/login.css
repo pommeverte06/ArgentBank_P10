@@ -41,14 +41,17 @@
     font-weight: bold;
     display: block;
     color: #2c3e50;
+    margin-bottom: 5px;
 }
 
 /* champs input */
 .input-wrapper input {
     width: 100%;
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 16px;
     border: 1px solid black;
+    margin-left: 0;
+    border-radius: 0;
 }
 
 /* "remember me" */
@@ -56,12 +59,12 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    font-size: 0.9rem;
-    margin: 1rem 0;
+    font-size: 16px;
+    margin: 10px 0;
 }
 
 .input-remember label {
-    margin-left: 0.5rem;
+    margin-left: 0;
 }
 
 /* submit button */

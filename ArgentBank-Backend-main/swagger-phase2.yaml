@@ -18,7 +18,7 @@ paths:
         - Bearer: []
       tags:
         - Transactions Utilisateur
-      summary: Obtenir une liste des transactions
+      summary: Obtenir la liste des transactions
       description: API pour récupérer toutes les transactions d'un utilisateur
       parameters:
         - in: header

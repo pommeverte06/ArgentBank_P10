@@ -1,15 +1,21 @@
-
-
-
 .hero {
   position: relative;
   width: 100%;
-  height: 300px;
-  background-image: url("../../assets/img/bank-tree.jpeg");
-  background-position: 0 -50%; 
-  background-size: cover; 
-  background-repeat: no-repeat; 
+  height: 444px;
   overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/img/bank-tree.webp");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .banner-content {
@@ -20,12 +26,14 @@
   background-color: white;
   padding: 20px;
   width: 300px;
+  height: 200px;
   text-align: left;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .banner-subtitle {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   margin: 0 0 10px;
 }
@@ -38,7 +46,10 @@
 @media (min-width: 920px) {
   .hero {
     height: 400px;
-    background-position: 0 -100px; 
+  }
+
+  .hero-image {
+    background-position: center bottom;
   }
 
   .banner-content {

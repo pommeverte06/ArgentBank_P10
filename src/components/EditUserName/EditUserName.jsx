@@ -11,15 +11,13 @@ const EditUserName = ({ userProfile, onCancel }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
- 
-
   const handleSave = async () => {
-    if (!userName.trim()) { 
+    if (!userName.trim()) {
       setError("Username cannot be empty.");
       setSuccess(false);
       return;
     }
-  
+
     try {
       const updatedUser = await updateUserProfile(token, { userName });
       dispatch(updateUser(updatedUser)); // mise à jour du store redux
@@ -31,11 +29,6 @@ const EditUserName = ({ userProfile, onCancel }) => {
       setSuccess(false);
     }
   };
-  
-
-
-
-
 
   return (
     <div className="edit-user-name">
