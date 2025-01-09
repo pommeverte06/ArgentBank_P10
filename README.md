@@ -39,7 +39,7 @@ Le projet **Argent Bank** est une application bancaire développée avec **React
 - **Swagger** : Documentation et définition des points d'accès API.
 
 ### Points importants :
-- Intégration avec le back-end via des appels API REST.
+- Intégration avec le back-end via des appels API.
 - Suivi des maquettes fournies pour assurer une expérience utilisateur conforme aux attentes.
 
 
@@ -60,7 +60,7 @@ Les routes API suivantes sont documentées avec Swagger :
 ### Phase 1 : Authentification
 - **POST /user/login** : Connexion utilisateur.
 - **GET /user/profile** : Récupération des informations de l'utilisateur connecté.
-- **PATCH /user/profile** : Mise à jour du pseudo utilisateur.
+- **PUT /user/profile** : Mise à jour du pseudo utilisateur.
 
 ### Phase 2 : Transactions
 - **GET /user/transactions** : Récupération des transactions groupées par compte.
