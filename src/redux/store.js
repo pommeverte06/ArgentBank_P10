@@ -4,8 +4,8 @@ import operationReducer from "./operationSlice";
 
 const store = configureStore({
   reducer: {
-    user: userReducer,
-    operations: operationReducer,
+    user: userReducer, //gère l'état utilisateur
+    operations: operationReducer, //gère opérations transactions
   },
 });
 

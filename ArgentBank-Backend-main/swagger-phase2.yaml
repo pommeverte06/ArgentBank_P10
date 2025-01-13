@@ -12,12 +12,12 @@ security:
   - Bearer: []
 
 paths:
-  /user/transactions:
+  /user/account/{accountId}/transactions:
     get:
       security:
         - Bearer: []
       tags:
-        - Transactions Utilisateur
+        - User's Transactions
       summary: Obtenir la liste des transactions
       description: API pour récupérer toutes les transactions d'un utilisateur
       parameters:
@@ -26,6 +26,11 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - in: path
+          name: accountId
+          type: string
+          required: true
+          description: ID du compte utilisateur
       produces:
         - application/json
       responses:
@@ -40,12 +45,12 @@ paths:
         '500':
           description: Erreur interne du serveur
 
-  /user/profile/transaction/{id}:
+  /user/account/{accountId}/transaction/{transactionId}:
     get:
       security:
         - Bearer: []
       tags:
-        - Transactions Utilisateur
+        - User's Transactions
       summary: Obtenir une transaction par ID
       description: API pour récupérer une transaction spécifique d'un utilisateur
       parameters:
@@ -55,8 +60,13 @@ paths:
           required: true
           type: string
         - in: path
-          name: id
-          type: integer
+          name: accountId
+          type: string
+          required: true
+          description: ID du compte utilisateur
+        - in: path
+          name: transactionId
+          type: string
           required: true
           description: ID de la transaction à récupérer
       produces:
@@ -77,7 +87,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions Utilisateur
+        - User's Transactions
       summary: Mettre à jour une transaction existante
       description: API pour mettre à jour une transaction utilisateur
       parameters:
@@ -87,8 +97,13 @@ paths:
           required: true
           type: string
         - in: path
-          name: id
-          type: integer
+          name: accountId
+          type: string
+          required: true
+          description: ID du compte utilisateur
+        - in: path
+          name: transactionId
+          type: string
           required: true
           description: ID de la transaction à mettre à jour
         - in: body
@@ -108,6 +123,33 @@ paths:
           description: Champs invalides
         '404':
           description: Transaction introuvable
+        '500':
+          description: Erreur interne du serveur
+
+  /user/register:
+    post:
+      tags:
+        - User Management
+      summary: Créer un nouveau compte utilisateur
+      description: API pour permettre à un utilisateur de s'inscrire en créant un compte.
+      parameters:
+        - in: body
+          name: body
+          description: Données nécessaires pour l'inscription de l'utilisateur
+          required: true
+          schema:
+            $ref: '#/definitions/UserRegister'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Compte utilisateur créé avec succès
+          schema:
+            $ref: '#/definitions/UserProfile'
+        '400':
+          description: Données invalides fournies
+        '409':
+          description: L'utilisateur existe déjà
         '500':
           description: Erreur interne du serveur
 
@@ -148,4 +190,38 @@ definitions:
       category:
         type: string
       notes:
+        type: string
+        
+  UserRegister:
+    type: object
+    properties:
+      firstName:
+        type: string
+        description: Prénom de l'utilisateur
+      lastName:
+        type: string
+        description: Nom de l'utilisateur
+      username:
+        type: string
+        description: Nom d'utilisateur
+      email:
+        type: string
+        description: Email de l'utilisateur (doit être unique)
+      password:
+        type: string
+        description: Mot de passe pour le compte utilisateur
+      confirmPassword:
+        type: string
+        description: Confirmation du mot de passe
+
+  UserProfile:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      username:
         type: string

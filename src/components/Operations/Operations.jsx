@@ -1,34 +1,16 @@
 import React, { useState } from "react";
+import { mockAccounts } from "../../services/mockData"; 
 import "./operations.css";
 
-function Operation() {
+function Operation({ accountId }) {
   const [expandedRow, setExpandedRow] = useState(null);
   const [editingCategory, setEditingCategory] = useState(null);
   const [editingNote, setEditingNote] = useState(null);
   const [editableData, setEditableData] = useState({});
 
-  const operations = [
-    {
-      id: 1,
-      date: "27/02/20",
-      description: "Golden Sun Bakery",
-      amount: "$8.00",
-      balance: "$298.00",
-      transactionType: "Electronic",
-      category: "Food",
-      note: "lorem ipsum",
-    },
-    {
-      id: 2,
-      date: "27/02/20",
-      description: "Golden Sun Bakery",
-      amount: "$8.00",
-      balance: "$298.00",
-      transactionType: "Electronic",
-      category: "Food",
-      note: "lorem ipsum",
-    },
-  ];
+  // recupére les opérations du compte actuel
+  const account = mockAccounts.find((acc) => acc.id === accountId);
+  const operations = account?.operations || [];
 
   const categories = ["Food", "Transport", "Shopping"];
 

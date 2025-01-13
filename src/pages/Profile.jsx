@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserProfile } from "../services/api";
+import { mockAccounts } from "../services/mockData"; 
 import Account from "../components/Accounts/Account";
 import EditUserName from "../components/EditUserName/EditUserName";
 import Operation from "../components/Operations/Operations";
@@ -66,32 +67,20 @@ function Profile() {
         )}
 
         <div className="accounts">
-          <Account
-            title="Argent Bank Checking (x8349)"
-            amount="$2,082.79"
-            description="Available Balance"
-            onToggle={() => toggleOperations(1)}
-            showOperations={showOperations === 1}
-          />
-          {showOperations === 1 && <Operation accountId={1} />}
-
-          <Account
-            title="Argent Bank Savings (x6712)"
-            amount="$10,928.42"
-            description="Available Balance"
-            onToggle={() => toggleOperations(2)}
-            showOperations={showOperations === 2}
-          />
-          {showOperations === 2 && <Operation accountId={2} />}
-
-          <Account
-            title="Argent Bank Credit Card (x8349)"
-            amount="$184.30"
-            description="Current Balance"
-            onToggle={() => toggleOperations(3)}
-            showOperations={showOperations === 3}
-          />
-          {showOperations === 3 && <Operation accountId={3} />}
+          {mockAccounts.map((account) => (
+            <React.Fragment key={account.id}>
+              <Account
+                title={account.title}
+                amount={account.amount}
+                description={account.description}
+                onToggle={() => toggleOperations(account.id)}
+                showOperations={showOperations === account.id}
+              />
+              {showOperations === account.id && (
+                <Operation accountId={account.id} />
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </main>
     </>

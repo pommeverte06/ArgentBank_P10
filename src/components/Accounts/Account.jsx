@@ -18,7 +18,7 @@ function Account({ title, amount, description, onToggle, showOperations }) {
     </section>
   );
 };
-
+// ajout des types pour les props
 Account.propTypes = {
   title: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,

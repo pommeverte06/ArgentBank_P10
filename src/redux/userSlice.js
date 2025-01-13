@@ -6,7 +6,7 @@ const initialState = {
   userData: null,
 };
 
-// vérif existance du token dans localstorage ou sessionstorage
+// vérif existence du token dans localstorage ou sessionstorage
 if (localStorage.getItem("token") || sessionStorage.getItem("token")) {
   initialState.isLoggedIn = true;
   initialState.token =
