@@ -7,6 +7,7 @@ const store = configureStore({
     user: userReducer, //gère l'état utilisateur
     operations: operationReducer, //gère opérations transactions
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export default store;

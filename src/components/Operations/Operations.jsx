@@ -9,7 +9,7 @@ function Operation({ accountId }) {
   const [editableData, setEditableData] = useState({});
 
   // recupére les opérations du compte actuel
-  const account = mockAccounts.find((acc) => acc.id === accountId);
+  const account = mockAccounts.find((account) => account.id === accountId);
   const operations = account?.operations || [];
 
   const categories = ["Food", "Transport", "Shopping"];
