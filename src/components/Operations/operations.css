@@ -111,3 +111,67 @@
     color: white;
   }
   
+
+/* tablettes (max-width: 768px) */
+@media (max-width: 768px) {
+  .operation-container {
+    width: 95%; 
+    padding: 5px 10px; 
+  }
+
+  .transaction-table {
+    font-size: 0.9rem; 
+  }
+
+  .transaction-table th,
+  .transaction-table td {
+    padding: 8px 10px; 
+  }
+
+  .toggle-button {
+    font-size: 0.9rem; 
+    padding: 5px;
+  }
+
+  .edit-field {
+    gap: 8px; 
+  }
+
+  select,
+  input {
+    font-size: 13px; 
+    padding: 4px;
+  }
+}
+
+/* smartphones (max-width: 480px) */
+@media (max-width: 480px) {
+  .operation-container {
+    width: 100%; 
+    padding: 5px; 
+  }
+
+  .transaction-table th,
+  .transaction-table td {
+    padding: 5px 8px; 
+  }
+
+  .transaction-table {
+    font-size: 0.8rem; 
+  }
+
+  .edit-field {
+    gap: 5px; 
+  }
+
+  select,
+  input {
+    font-size: 12px; 
+    padding: 3px; 
+  }
+
+  .toggle-button {
+    font-size: 0.8rem; 
+    padding: 3px;
+  }
+}

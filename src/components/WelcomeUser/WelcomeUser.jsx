@@ -7,7 +7,7 @@ import "./welcomeuser.css";
 function WelcomeUser() {
   const dispatch = useDispatch();
   const { userData, token } = useSelector((state) => state.user);
-  const [isEditing, setIsEditing] = useState(false); // gére l'état d'édition
+  const [isEditing, setIsEditing] = useState(false);
   const [newUserName, setNewUserName] = useState(userData?.userName || "");
 
   const handleSave = async () => {
@@ -16,7 +16,7 @@ function WelcomeUser() {
         userName: newUserName,
       });
       dispatch(updateUser(updatedData)); // mise à jour du store Redux
-      setIsEditing(false); //affichage normal
+      setIsEditing(false);
     } catch (error) {
       console.error("Failed to update username:", error);
     }
@@ -26,21 +26,41 @@ function WelcomeUser() {
     <div className="welcome">
       {isEditing ? (
         <div className="edit-user">
-          <h1>Edit user info</h1>
+          <h1>Edit User Info</h1>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSave();
             }}
           >
-            <label htmlFor="username">User name:</label>
-            <input
-              id="username"
-              type="text"
-              value={newUserName}
-              onChange={(e) => setNewUserName(e.target.value)}
-              required
-            />
+            <div className="form-group">
+              <label htmlFor="username">User name:</label>
+              <input
+                id="username"
+                type="text"
+                value={newUserName}
+                onChange={(e) => setNewUserName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="firstName">First name:</label>
+              <input
+                id="firstName"
+                type="text"
+                value={userData?.firstName || ""}
+                disabled
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="lastName">Last name:</label>
+              <input
+                id="lastName"
+                type="text"
+                value={userData?.lastName || ""}
+                disabled
+              />
+            </div>
             <div className="buttons">
               <button type="submit" className="save-button">
                 Save

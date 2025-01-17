@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../services/api";
 import { updateUser } from "../../redux/userSlice";
 import "./editusername.css";
 
-function EditUserName  ({ userProfile, onCancel })  {
+function EditUserName({ onCancel }) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
-  const [userName, setUserName] = useState(userProfile?.userName || "");
+  const { userData, token } = useSelector((state) => state.user);
+  const [userName, setUserName] = useState(userData?.userName || "");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -20,9 +20,10 @@ function EditUserName  ({ userProfile, onCancel })  {
 
     try {
       const updatedUser = await updateUserProfile(token, { userName });
-      dispatch(updateUser(updatedUser)); // mise à jour du store redux
+      dispatch(updateUser(updatedUser)); // mise à jour du store Redux
       setSuccess(true);
       setError(null);
+      if (onCancel) onCancel(); // Ferme la fenêtre d'édition si nécessaire
     } catch (err) {
       console.error("Failed to update username:", err);
       setError("Failed to update username. Please try again.");
@@ -47,7 +48,7 @@ function EditUserName  ({ userProfile, onCancel })  {
         <input
           type="text"
           id="firstName"
-          value={userProfile?.firstName || ""}
+          value={userData?.firstName || ""}
           disabled
         />
       </div>
@@ -56,7 +57,7 @@ function EditUserName  ({ userProfile, onCancel })  {
         <input
           type="text"
           id="lastName"
-          value={userProfile?.lastName || ""}
+          value={userData?.lastName || ""}
           disabled
         />
       </div>
@@ -74,6 +75,6 @@ function EditUserName  ({ userProfile, onCancel })  {
       </div>
     </div>
   );
-};
+}
 
 export default EditUserName;

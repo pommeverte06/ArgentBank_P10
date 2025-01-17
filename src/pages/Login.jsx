@@ -17,12 +17,8 @@ function Login() {
     e.preventDefault();
     try {
       const data = await apiLogin({ email, password });
-      console.log("Réponse API après login :", data);
-
       const userProfile = await getUserProfile(data.token);
       dispatch(login({ token: data.token, userData: userProfile, rememberMe }));
-
-      console.log("Utilisateur connecté, redirection vers /profile");
       navigate("/profile");
     } catch (err) {
       console.error("Erreur lors de la connexion :", err);

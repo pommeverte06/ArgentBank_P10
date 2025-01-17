@@ -15,9 +15,7 @@ function Header() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("Logout button clicked");
     dispatch(logout());
-    console.log("User logged out, navigating to home");
     navigate("/");
   };
 
