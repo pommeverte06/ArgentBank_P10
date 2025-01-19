@@ -37,6 +37,8 @@ paths:
             $ref: "#/definitions/LoginResponse"
         "400":
           description: Invalid credentials
+        "401": 
+          description: Not authorized
         "500":
           description: Internal server error
 
@@ -62,6 +64,8 @@ paths:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid data
+        "401": 
+          description: Not authorized
         "409":
           description: User already exists
         "500":
@@ -84,6 +88,8 @@ paths:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid request
+        "401": 
+          description: Not authorized
         "500":
           description: Internal server error
     put:
@@ -109,6 +115,8 @@ paths:
             $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid data
+        "401": 
+          description: Not authorized
         "500":
           description: Internal server error
 
@@ -140,6 +148,8 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Transaction"
+        "401": 
+          description: Not authorized
         "404":
           description: Transactions not found
         "500":
@@ -178,6 +188,9 @@ paths:
             $ref: "#/definitions/Transaction"
         "400":
           description: Invalid ID provided
+        "401": 
+          description: Not authorized
+          
         "404":
           description: Transaction not found
         "500":
@@ -220,6 +233,8 @@ paths:
             $ref: "#/definitions/Transaction"
         "400":
           description: Invalid fields provided
+        "401": 
+          description: Not authorized
         "404":
           description: Transaction not found
         "500":
@@ -245,6 +260,8 @@ paths:
           description: User account created successfully
           schema:
             $ref: "#/definitions/UserProfile"
+        "401": 
+          description: Not authorized
         "400":
           description: Invalid data provided
         "409":
