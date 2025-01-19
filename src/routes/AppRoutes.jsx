@@ -5,13 +5,15 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Settings from "../pages/Settings";
 import ProtectedRoute from "./ProtectedRoute";
+import { useSelector } from "react-redux";
 
-function AppRoutes() {
+const AppRoutes = () => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <Routes>
       {/* routes publiques */}
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={!isLoggedIn ? <Login /> : <Profile />} />
 
       {/* route protégée pour le profil */}
       <Route
@@ -37,6 +39,6 @@ function AppRoutes() {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-}
+};
 
 export default AppRoutes;
